@@ -1,4 +1,7 @@
 # MacOs Setup
+
+[![CI](https://github.com/irfanbaigse/macos-setup-developer-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/irfanbaigse/macos-setup-developer-tools/actions/workflows/ci.yml)
+
 Build Scripts + Shortcuts for Automation in Any Language
 
 ## Table of Contents
