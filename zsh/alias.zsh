@@ -15,7 +15,7 @@ alias dcdown="docker-compose down"
 alias dcstart="docker-compose start"
 alias dcstop="docker-compose stop"
 
-alias kallnode="sudo kill -9 `ps aux | grep node | grep -v grep | awk '{print $2}'`"
+alias kallnode='sudo pkill -9 node'
 
 # cd
 alias ..="cd .."
