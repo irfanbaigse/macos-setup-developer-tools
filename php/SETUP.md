@@ -1,22 +1,32 @@
+# PHP Setup
 
+Install supported PHP versions only. PHP 8.1 and older no longer get security fixes, see [supported versions](https://www.php.net/supported-versions.php).
+
+```shell
+brew install php@8.4
+brew install php@8.3
+brew install pkg-config
+```
+
+Need an end-of-life version for a legacy project? `shivammathur/php` has them, but they get no security fixes, so keep them off anything exposed to a network:
 
 ```shell
 brew tap shivammathur/php
-brew install php@8.1
-brew install php@7.4
-brew install pkg-config
+brew trust shivammathur/php
+brew install shivammathur/php/php@7.4
 ```
 
 
 ### Install phpenv
+The installer is pinned to a commit rather than `master`, so the script that runs doesn't change under you. Read it before piping to bash. It clones the latest `phpenv/phpenv` from GitHub.
 ```shell
-curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
+curl -fsSL https://raw.githubusercontent.com/phpenv/phpenv-installer/ea78f2619fe9028ba42be6745579c4a998ed8460/bin/phpenv-installer | bash
 ```
 
 Add to your .zshrc file & restart zsh `exec zsh`
 
 ```shell
-export PHPENV_ROOT="/Users/irfan.baig/.phpenv"
+export PHPENV_ROOT="$HOME/.phpenv"
 if [ -d "${PHPENV_ROOT}" ]; then
   export PATH="${PHPENV_ROOT}/bin:${PATH}"
   eval "$(phpenv init -)"
