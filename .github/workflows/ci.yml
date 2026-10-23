@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    name: PHP lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: php -l
+        run: |
+          php --version
+          git ls-files -z '*.php' | xargs -0 -r -n1 php -l
+
+  shell:
+    name: Shell lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: shellcheck bash scripts
+        run: shellcheck git/prepare-commit-msg
+      - name: zsh syntax check
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq zsh
+          git ls-files -z '*.zsh' | xargs -0 -r -n1 zsh -n
+
+  compose:
+    name: Docker Compose config
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: docker compose config
+        run: docker compose -f mysql/docker-comose.yml config --quiet
