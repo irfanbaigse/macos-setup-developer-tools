@@ -9,7 +9,6 @@
 BRANCHES_TO_SKIP=("master" "production" "staging" "main" "develop")
 
 AUTHOR_INFO=$(git var GIT_AUTHOR_IDENT) || exit 1
-NAME=$(printf '%s\n\n' "${AUTHOR_INFO}" | sed -n 's/^\(.*\) <.*$/\1/p')
 
 # Get branch name
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
